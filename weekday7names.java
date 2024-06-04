@@ -2,7 +2,7 @@
 package demo;
 import java.util.Scanner;
 //create class
-public class weekday7names {
+public class weekday7names { 
     
 //create main method
  public static void main(String[] args)
