@@ -2,7 +2,7 @@ package demo; // Define the package name
 
 import java.util.Scanner; // Import the Scanner class for user input
 
-// Create a class named cubeofno
+// Create a class named cubeofno 
 public class cubeofno {
     // Main method: Entry point of the program
     public static void main(String[] args) {
