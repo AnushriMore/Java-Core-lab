@@ -1,4 +1,4 @@
-//Write a Java program to get a number from the user and print whether it is positive or negative.
+ //Write a Java program to get a number from the user and print whether it is positive or negative.
 package demo; // Define the package name
 
 import java.util.Scanner; // Import the Scanner class for user input
