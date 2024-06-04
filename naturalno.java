@@ -1,6 +1,6 @@
 //Write a Java program to display the first 10 natural numbers.
 package demo; // Define the package name
-
+ 
 // Create a class named naturalno
 public class naturalno {
     // Main method: Entry point of the program
