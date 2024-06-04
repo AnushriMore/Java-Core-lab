@@ -4,7 +4,7 @@ package demo; // Define the package name
 import java.util.Scanner; // Import the Scanner class for user input
 
 // Create a class named sum5no
-public class sum5no {
+public class sum5no { 
     // Main method: Entry point of the program
     public static void main(String[] args) {
         int i, n = 0, s = 0; // Declare variables: i for loop control, n for input number, s for sum
