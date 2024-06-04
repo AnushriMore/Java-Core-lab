@@ -1,6 +1,6 @@
 //Write a Java program that takes three numbers from the user and prints the greatest number.
 package demo; // Define the package name
-
+ 
 import java.util.Scanner; // Import the Scanner class for user input
 
 // Create a class named greatestno
