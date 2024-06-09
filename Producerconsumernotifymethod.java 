@@ -1,0 +1,111 @@
+//Write a Java program to create a producer-consumer scenario using the wait() and notify() methods for thread synchronization.
+package Anudipjavalab;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Producerconsumernotifymethod {
+    // The maximum size of the buffer
+    private static final int BUFFER_SIZE = 5;
+    // The shared buffer between the producer and consumer
+    private static final Queue<Integer> buffer = new LinkedList<>();
+
+    public static void main(String[] args) {
+        // Create and start the producer and consumer threads
+        Thread producerThread = new Thread(new Producer());
+        Thread consumerThread = new Thread(new Consumer());
+
+        producerThread.start();
+        consumerThread.start();
+    }
+
+    // The producer class implements the Runnable interface
+    static class Producer implements Runnable {
+        public void run() {
+            int value = 0;
+            while (true) {
+                synchronized (buffer) {
+                    // Wait if the buffer is full
+                    while (buffer.size() == BUFFER_SIZE) {
+                        try {
+                            buffer.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    // Produce an item and add it to the buffer
+                    System.out.println("Producer produced: " + value);
+                    buffer.add(value++);
+
+                    // Notify the consumer that an item has been produced
+                    buffer.notify();
+
+                    // Sleep for a while before producing the next item
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    // The consumer class implements the Runnable interface
+    static class Consumer implements Runnable {
+        public void run() {
+            while (true) {
+                synchronized (buffer) {
+                    // Wait if the buffer is empty
+                    while (buffer.isEmpty()) {
+                        try {
+                            buffer.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    // Consume an item from the buffer
+                    int value = buffer.poll();
+                    System.out.println("Consumer consumed: " + value);
+
+                    // Notify the producer that an item has been consumed
+                    buffer.notify();
+
+                    // Sleep for a while before consuming the next item
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*Dry run
+Producer produced: 0
+Consumer consumed: 0
+Producer produced: 1
+Consumer consumed: 1
+Producer produced: 2
+Consumer consumed: 2
+Producer produced: 3
+Consumer consumed: 3
+Producer produced: 4
+Consumer consumed: 4
+Producer produced: 5
+Consumer consumed: 5
+Producer produced: 6
+Consumer consumed: 6
+Producer produced: 7
+Consumer consumed: 7
+Producer produced: 8
+Consumer consumed: 8
+Producer produced: 9
+Consumer consumed: 9
+...
+/*
+	
